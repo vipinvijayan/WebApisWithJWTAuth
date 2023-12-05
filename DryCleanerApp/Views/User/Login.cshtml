@@ -1,0 +1,140 @@
+﻿@model DryCleanerAppDataAccess.Models.UserLoginParams
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>User Login </h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" id="Username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" type="password" id="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top:10px">
+                <a onclick="LoginAsync()" class="btn btn-success" >Login</a>
+            </div>
+
+
+            @*   <input type="submit" value="Login" class="btn btn-primary" /> *@
+
+            <div class="form-group">
+                <label class="alert-danger" id="Message"></label>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Registration">Register</a>
+
+</div>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+      
+    }
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        loadData();
+    });
+
+    //Load Data function
+    function loadData() {
+       // alert(navigator.userAgent);
+    }
+    // Validate Controlls
+    function validate() {
+        var isValid = true;
+        if ($('#Username').val().trim() == "") {
+            $('#Username').css('border-color', 'Red');
+            isValid = false;
+        }
+        else {
+            $('#Username').css('border-color', 'lightgrey');
+        }
+        if ($('#Password').val().trim() == "") {
+            $('#Password').css('border-color', 'Red');
+            isValid = false;
+        }
+        else {
+            $('#Password').css('border-color', 'lightgrey');
+        }
+
+        return isValid;
+    }
+
+    //Login Function
+    function LoginAsync() {
+        var res = validate();
+        if (res == false) {
+            return false;
+        }
+        var empObj = {
+            Username: $('#Username').val(),
+            Password: $('#Password').val(),
+            CompanyId: 1,
+            UserAgent: navigator.userAgent
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "User/Login",
+            data: empObj,
+            //data: '{"test":' + testdata + '}',
+            //contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data != 'Login Failed') {
+                    debugger;
+
+                   
+                   // window.location.href = "/CompanyMaster/CompanyList";
+                  
+                } else {
+                    
+                    $('#Message').val("Login Failed");
+                    // alert("Login Failed");
+                }
+            },
+            failure: function (err) {
+
+            }
+        });
+        // $.ajax({
+        //     url: "/User/LoginAsync",
+        //     data: empObj,
+        //     type: "POST",
+        //     contentType: "application/json;charset=utf-8",
+        //     dataType: "json",
+        //     async: false,
+        //     success: function (result) {
+        //         debugger;
+        //         alert(result);
+
+        //     },
+        //     error: function (errormessage) {
+        //         alert(errormessage.responseText);
+        //     }
+        // });
+    }
+
+</script>

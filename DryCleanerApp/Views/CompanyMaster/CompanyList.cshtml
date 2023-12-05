@@ -1,0 +1,123 @@
+﻿@model IEnumerable<DryCleanerAppDataAccess.Models.CompanyListModel>
+
+@{
+    ViewData["Title"] = "Company List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CompanyList</h1>
+
+<p>
+    <a asp-action="CreateCompany">Create New</a>
+</p>
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <h2>Company List</h2>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Place
+                    </th>
+                    <th>
+                        Land Mark
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Country
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Registered By
+                    </th>
+                    <th>
+                        Registered On
+                    </th>
+
+                    <th>
+                        Company Status
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Place)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LandMark)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyState)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyCountry)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyPhone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyEmail)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedByName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

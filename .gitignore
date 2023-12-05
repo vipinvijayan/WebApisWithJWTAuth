@@ -1,0 +1,13 @@
+﻿.vs/DryCleanerAppSln/config
+.vs/DryCleanerAppSln/DesignTimeBuild
+.vs/DryCleanerAppSln/FileContentIndex
+.vs/EcomMVC/DesignTimeBuild
+.vs/EcomMVC/FileContentIndex
+DryCleanerApp/bin
+DryCleanerApp/obj
+DryCleanerAppBussinessLogic/bin
+DryCleanerAppBussinessLogic/obj
+DryCleanerAppDataAccess/bin
+DryCleanerAppDataAccess/obj
+.vs/DryCleanerAppSln/v17
+.vs/ProjectEvaluation
